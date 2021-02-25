@@ -15,6 +15,12 @@ set sw=4
 set expandtab
 set autoindent
 set smartindent
+"config autocomplete
+inoremap ( ()<Esc>i
+inoremap { {}<Esc>i
+inoremap [ []<Esc>i
+inoremap " ""<Esc>i
+inoremap ' ''<Esc>i
 "For plugin to load correctly
 filetype plugin indent on
 call plug#begin('~/.vim/puggled')
@@ -35,15 +41,30 @@ Plug 'vim-airline/vim-airline'
 
 Plug 'pangloss/vim-javascript'
          
+Plug 'maxmellon/vim-jsx-pretty'
+
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+Plug 'Yggdroot/indentLine'
+
 call plug#end()
-colorscheme gruvbox
-let g:gruvboxj_termcolors='256'
-let g:gruvbox_bold='1'
+
+"config indentLine
+let g:indentLine_char_list =  ['|']
+"colorscheme atom-dark-256
+syntax enable
+colorscheme dracula
+
+"let g:gruvboxj_termcolors='256'
+"let g:gruvbox_bold='1'
 let g:gruvbox_contrast_dark = 'hard'
-set background =dark
+set background=dark
 let NERDTreeQuitOnOpen=1
 let mapleader=" "
 
+"confing pluggin for colored sintax js 
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
 "config for vim-airline
 let g:airline_powerline_fonts = 1
 
@@ -51,4 +72,8 @@ let g:airline_powerline_fonts = 1
 " save document whit ctrl-s
 nnoremap <c-s> :w<CR>
 nmap <Leader>nt :NERDTreeFind<CR>
+" open term
 map <S-t> :vert :term<CR>
+" GoTo code navigation 
+nmap <silent> gd <Plug>(coc-definition)
+
